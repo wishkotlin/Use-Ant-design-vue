@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "pregh": "npm run build",
+    "gh": "gh-pages -d dist"
   },
   "dependencies": {
     "ant-design-vue": "^1.2.4",
