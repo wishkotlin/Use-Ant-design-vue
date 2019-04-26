@@ -1,6 +1,7 @@
 <template>
   <a-locale-provider :locale="zh_CN">
     <div id="app">
+      <div style="font-size: 30px; padding-top: 20px;">Todo-List Use Ant-design-vue</div>
       <TodoList/>
       <!-- <img src="./assets/logo.png"> -->
       <!-- <div>
@@ -38,8 +39,8 @@ export default {
 
 <style lang="scss" scoped>
 body {
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
   #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

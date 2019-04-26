@@ -1,6 +1,6 @@
 <template>
   <div class="TodoItem">
-    <a-checkbox :class="{ checked: item.checked }" :data-index="key" ref="check" :checked="item.checked" :key="key" v-for="(item,key) in Todos" @change="(event) => onchange(event,key)">{{ item.value }} <span>{{ item.time }}</span></a-checkbox>
+    <a-checkbox :class="{ checked: item.checked }" :data-index="key" ref="check" :checked="item.checked" :key="key" v-for="(item,key) in Todos" @change="(event) => onchange(event,key)"><p class="todoitem">{{ item.value }}</p> <p>{{ item.time }}</p></a-checkbox>
   </div>
 </template>
 
@@ -87,6 +87,15 @@ export default {
       // text-decoration: dashed;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      .todoitem{
+        width: calc(100% - 140px);
+        margin-bottom: unset;
+        text-align: justify;
+      }
+      p{
+        margin-bottom: unset;
+      }
     }
     
   }

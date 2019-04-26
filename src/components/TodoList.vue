@@ -1,7 +1,7 @@
 <template>
   <div class="TodoList">
     <div class="components-input-demo-presuffix">
-      <a-input placeholder="Basic usage" v-model="TempTodo" ref="userNameInput" @keyup="write">
+      <a-input placeholder="请输入您的代办事项" v-model="TempTodo" ref="userNameInput" @keyup="write">
         <!-- <a-icon slot="prefix" type="user"/> -->
         <a-icon slot="prefix" type="edit"/>
         <a-icon v-if="TempTodo" slot="suffix" type="close-circle" @click="emitEmpty"/>
@@ -61,7 +61,7 @@ export default {
   max-width: calc(100vw - 50%);
   min-width: calc(100vw - 50%);
   margin: 0 auto;
-  padding-top: 60px;
+  padding-top: 20px;
   .components-input-demo-presuffix .anticon-close-circle {
     cursor: pointer;
     color: #ccc;
