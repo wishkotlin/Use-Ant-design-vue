@@ -1,6 +1,13 @@
 <template>
   <div class="TodoItem">
-    <a-checkbox :class="{ checked: item.checked }" :data-index="key" ref="check" :checked="item.checked" :key="key" v-for="(item,key) in Todos" @change="(event) => onchange(event,key)"><p class="todoitem">{{ item.value }}</p> <p>{{ item.time }}</p></a-checkbox>
+    <span :class="{ checked: item.checked }" class="todo" :key="key" v-for="(item,key) in Todos.filter(item => item.del === false)">
+    <a-checkbox :data-index="key" ref="check" :checked="item.checked" @change="(event) => onchange(event,key)">
+    </a-checkbox>
+    <div class="todoin" @dblclick="(event) => showDeleteConfirm(event,key)">
+    <p class="todoitemleft">{{ item.value }}</p>
+    <p class="todoitemright">{{ item.time }}</p>
+    </div>
+    </span>
   </div>
 </template>
 
@@ -9,10 +16,11 @@
  * 取消本文件 eslint
  */
 /* eslint-disable */
+import { Modal } from 'ant-design-vue'
 export default {
   data() {
     return {
-      Todos: this.Todo
+      Todos: this.Todo.filter(item => item.del === false)
     };
   },
   methods: {
@@ -25,17 +33,42 @@ export default {
       this.Todos[key].checked = !this.Todos[key].checked;
       // console.log(this.Todos[key].checked)
       localStorage.setItem("Todos",JSON.stringify(this.Todos));
-    }
+    },
+      showDeleteConfirm(event,key) {
+        console.log(event)
+        console.log(key)
+        console.log('点击了')
+        console.log(this)
+      this.$confirm({
+        title: '你要删除这个代办事项吗?',
+        content: '想要删除吗?',
+        okText: 'Yes',
+        okType: 'danger',
+        cancelText: 'No',
+        onOk: () => {
+          console.log('OK');
+          console.log(this.Todos[key])
+          let temp = this.Todos.filter(item => item.del === false)
+          console.log(temp)
+          temp[key].del = true;
+          localStorage.setItem("Todos",JSON.stringify(this.Todos));
+        },
+        onCancel: () => {
+          console.log('Cancel');
+        },
+      });
+    },
   },
   props: {
     Todo: Array
   },
   mounted() {
+    this.$confirm = Modal.confirm;
     let temp = JSON.parse(localStorage.getItem('Todos'));
     if(temp === null){
       this.Todos = []
     }else{
-       this.Todos = temp
+       this.Todos = temp.filter(item => item.del === false)
     }
    
     // console.log(this.Todos);
@@ -63,6 +96,27 @@ export default {
 </script>
 <style lang="scss" scope>
 .TodoItem {
+  .todo{
+    display: flex;
+    .todoin{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: calc(100% - 21px);
+      .todoitemleft{
+        padding-top: 10px;
+        margin: 0;
+        text-align: justify;
+        width: calc(100% - 80px);
+      }
+      .todoitemright{
+        padding-top: 10px;
+        margin: 0;
+        text-align: right;
+        width: 80px;
+      }
+    }
+  }
   padding-top: 20px;
   .ant-checkbox-wrapper {
     margin-left: unset;
@@ -72,8 +126,8 @@ export default {
     // display: -webkit-box;
     // justify-content: space-between;
     // width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+    // margin-left: auto;
+    // margin-right: auto;
     .ant-checkbox {
       top: unset;
     }
@@ -101,7 +155,7 @@ export default {
   }
   .checked{
     text-decoration: line-through;
-    opacity: 0.3;
+    opacity: 0.7;
   }
   .ant-checkbox-wrapper:nth-of-type(1){
         margin-left: 8px;

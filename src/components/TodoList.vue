@@ -32,10 +32,10 @@ export default {
       // console.log(e)
       let temptodo = {};
       temptodo.checked = false;
-      temptodo.edit = false;
+      temptodo.del = false;
       temptodo.time = new Date().toLocaleString();
       temptodo.value = this.TempTodo;
-      if(e.keyCode === 13){
+      if(e.keyCode === 13 && this.TempTodo !== ""){
         let temp = this.AllTodo
         temp.push(temptodo)
         // console.log(this.AllTodo)
@@ -57,9 +57,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .TodoList {
-  width: calc(100vw - 50%);
-  max-width: calc(100vw - 50%);
-  min-width: calc(100vw - 50%);
+  // width: calc(100vw - 50%);
+  // max-width: calc(100vw - 50%);
+  // min-width: calc(100vw - 50%);
+  max-width: 600px;
   margin: 0 auto;
   padding-top: 20px;
   .components-input-demo-presuffix .anticon-close-circle {
