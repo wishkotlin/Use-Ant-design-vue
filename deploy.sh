@@ -14,12 +14,12 @@ cd dist
 
 git init
 git add -A
-git commit -m 'deploy'
+git commit -m '添加按需加载'
 
 # 部署到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
+git push -f git@github.com:liulinboyi/Use-Ant-design-vue.git master:gh-pages
 
-cd -
+# cd -

@@ -1,7 +1,7 @@
 <template>
   <a-locale-provider :locale="zh_CN">
     <div id="app">
-      <div style="font-size: 30px; padding-top: 20px;">Todo-List Use Ant-design-vue</div>
+      <div class="top" style>Todo-List Use Ant-design-vue</div>
       <div>双击代办事项可以删除呦！</div>
       <TodoList/>
       <!-- <img src="./assets/logo.png"> -->
@@ -23,7 +23,8 @@
 <script>
 import zh_CN from "ant-design-vue/lib/locale-provider/zh_CN";
 // import HelloWorld from './components/HelloWorld.vue'
-import TodoList from "./components/TodoList.vue";
+// import TodoList from "./components/TodoList.vue";
+const TodoList  = () => import('./components/TodoList.vue');
 export default {
   name: "app",
   data() {
@@ -38,7 +39,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 body {
   // width: 100%;
   // height: 100%;
@@ -49,6 +50,16 @@ body {
     text-align: center;
     color: #2c3e50;
     // margin-top: 60px;
+  }
+  .top {
+    font-size: 30px;
+    padding-top: 20px;
+  }
+  @media (max-width: 768px) {
+    .top {
+      font-size: 15px;
+      font-weight: bold;
+    }
   }
 }
 </style>

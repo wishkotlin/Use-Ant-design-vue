@@ -7,12 +7,13 @@
         <a-icon v-if="TempTodo" slot="suffix" type="close-circle" @click="emitEmpty"/>
       </a-input>
     </div>
-    <TodoItem :Todo="AllTodo" />
+    <TodoItem :Todo="AllTodo"/>
   </div>
 </template>
 <script>
 /* eslint-disable */
-import TodoItem from "./TodoItem.vue";
+// import TodoItem from "./TodoItem.vue";
+const TodoItem = () => import('./TodoItem.vue');
 export default {
   data() {
     return {
@@ -28,31 +29,30 @@ export default {
       this.$refs.userNameInput.focus();
       this.TempTodo = "";
     },
-    write(e){
+    write(e) {
       // console.log(e)
       let temptodo = {};
       temptodo.checked = false;
       temptodo.del = false;
       temptodo.time = new Date().toLocaleString();
       temptodo.value = this.TempTodo;
-      if(e.keyCode === 13 && this.TempTodo !== ""){
-        let temp = this.AllTodo
-        temp.push(temptodo)
+      if (e.keyCode === 13 && this.TempTodo !== "") {
+        let temp = this.AllTodo;
+        temp.push(temptodo);
         // console.log(this.AllTodo)
         this.TempTodo = "";
-        localStorage.setItem("Todos",JSON.stringify(this.AllTodo));
+        localStorage.setItem("Todos", JSON.stringify(this.AllTodo));
       }
     }
   },
   mounted() {
-    let temp = JSON.parse(localStorage.getItem('Todos'));
-    if(temp === null){
-      this.AllTodo = []
-    }else{
-      this.AllTodo = temp
+    let temp = JSON.parse(localStorage.getItem("Todos"));
+    if (temp === null) {
+      this.AllTodo = [];
+    } else {
+      this.AllTodo = temp;
     }
-    
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -63,6 +63,8 @@ export default {
   max-width: 600px;
   margin: 0 auto;
   padding-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
   .components-input-demo-presuffix .anticon-close-circle {
     cursor: pointer;
     color: #ccc;
