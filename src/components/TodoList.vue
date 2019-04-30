@@ -31,11 +31,12 @@ export default {
     },
     write(e) {
       // console.log(e)
-      let temptodo = {};
-      temptodo.checked = false;
-      temptodo.del = false;
-      temptodo.time = new Date().toLocaleString();
-      temptodo.value = this.TempTodo;
+      let temptodo = {
+        checked: false,
+        del: false,
+        time: new Date().toLocaleString(),
+        value: this.TempTodo
+      };
       if (e.keyCode === 13 && this.TempTodo !== "") {
         let temp = this.AllTodo;
         temp.push(temptodo);
