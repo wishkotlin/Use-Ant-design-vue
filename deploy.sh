@@ -14,7 +14,7 @@ cd dist
 
 git init
 git add -A
-git commit -m '添加按需加载'
+git commit -m 'depoly'
 
 # 部署到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master

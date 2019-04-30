@@ -13,7 +13,7 @@
 <script>
 /* eslint-disable */
 // import TodoItem from "./TodoItem.vue";
-const TodoItem = () => import('./TodoItem.vue');
+const TodoItem = () => import("./TodoItem.vue");
 export default {
   data() {
     return {
