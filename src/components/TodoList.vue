@@ -7,7 +7,7 @@
         <a-icon v-if="TempTodo" slot="suffix" type="close-circle" @click="emitEmpty"/>
       </a-input>
     </div>
-    <TodoItem :Todo="AllTodo"/>
+    <TodoItem @info="info" :Todo="AllTodo"/>
   </div>
 </template>
 <script>
@@ -43,15 +43,20 @@ export default {
         this.TempTodo = "";
         localStorage.setItem("Todos", JSON.stringify(this.AllTodo));
       }
+    },
+    info(info) {
+      console.log("子组件传值", info);
+      this.AllTodo = info;
+      localStorage.setItem("Todos", JSON.stringify(this.AllTodo));
     }
   },
   mounted() {
-    let temp = JSON.parse(localStorage.getItem("Todos"));
-    if (temp === null) {
-      this.AllTodo = [];
-    } else {
-      this.AllTodo = temp;
-    }
+    // let temp = JSON.parse(localStorage.getItem("Todos"));
+    // if (temp === null) {
+    //   this.AllTodo = [];
+    // } else {
+    //   this.AllTodo = temp;
+    // }
   }
 };
 </script>

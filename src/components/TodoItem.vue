@@ -42,8 +42,9 @@ export default {
       let temp = this.Todos.filter(item => item.del === false);
       console.log(temp);
       temp[key].checked = !temp[key].checked;
+      this.$emit("info", this.Todos);
       // console.log(this.Todos[key].checked)
-      localStorage.setItem("Todos", JSON.stringify(this.Todos));
+      // localStorage.setItem("Todos", JSON.stringify(this.Todos));
     },
     showDeleteConfirm(event, key) {
       console.log(event);
@@ -63,7 +64,8 @@ export default {
           console.log(temp);
           temp[key].del = true;
           console.log(this.Todos);
-          localStorage.setItem("Todos", JSON.stringify(this.Todos));
+          this.$emit("info", this.Todos);
+          // localStorage.setItem("Todos", JSON.stringify(this.Todos));
         },
         onCancel: () => {
           console.log("Cancel");
@@ -72,7 +74,8 @@ export default {
     }
   },
   props: {
-    Todo: Array
+    Todo: Array,
+    info: Function
   },
   mounted() {
     this.$confirm = Modal.confirm;
