@@ -80,7 +80,7 @@ export default {
     if (temp === null) {
       this.Todos = [];
     } else {
-      this.Todos = temp.filter(item => item.del === false);
+      this.Todos = temp;
     }
 
     // console.log(this.Todos);
