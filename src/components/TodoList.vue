@@ -52,12 +52,12 @@ export default {
     }
   },
   mounted() {
-    // let temp = JSON.parse(localStorage.getItem("Todos"));
-    // if (temp === null) {
-    //   this.AllTodo = [];
-    // } else {
-    //   this.AllTodo = temp;
-    // }
+    let temp = JSON.parse(localStorage.getItem("Todos"));
+    if (temp === null) {
+      this.AllTodo = [];
+    } else {
+      this.AllTodo = temp;
+    }
   }
 };
 </script>
